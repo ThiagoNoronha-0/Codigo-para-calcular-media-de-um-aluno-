@@ -1,251 +1,88 @@
-Um código criado em C para calcular média de um aluno 
+O sistema permite:
 
+✔ Inserção de até 10 notas
 
+✔ Validação das notas (somente valores entre 0 e 10)
 
-#include <stdio.h>
+✔ Encerramento da inserção com o valor -1
 
+✔ Cálculo da média das notas
 
+✔ Identificação da maior nota
 
-// Função para calcular a média
+✔ Identificação da menor nota
 
-float calcularMedia(float notas[], int qtd)
+✔ Exibição de todas as notas cadastradas
 
-{
+✔ Menu interativo com repetição até o usuário optar por sair
 
-  float soma = 0;
+O código é dividido em funções para melhor organização:
 
-  for (int i = 0; i < qtd; i++)
+🔹 calcularMedia()
 
-  {
+Recebe um vetor de notas e retorna a média.
 
-    soma += notas[i];
+🔹 maiorNota()
 
-  }
+Percorre o vetor e retorna o maior valor encontrado.
 
-  return soma / qtd;
+🔹 menorNota()
 
-}
+Retorna a menor nota inserida pelo usuário.
 
+🔹 menu()
 
+Exibe um menu interativo permitindo que o usuário escolha qual estatística visualizar.
 
-// Função para encontrar a maior nota
+📝 Como Usar
 
-float maiorNota(float notas[], int qtd)
+Compile o programa:
 
-{
+gcc main.c -o notas
 
-  float maior = notas[0];
 
-  for (int i = 1; i < qtd; i++)
+Execute:
 
-  {
+./notas
 
-    if (notas[i] > maior)
 
-    {
+Digite as notas conforme solicitado:
 
-      maior = notas[i];
+Entre 0 e 10
 
-    }
+Ou digite -1 para parar antes das 10 notas
 
-  }
+Após o cadastro, escolha uma opção no menu estatístico.
 
-  return maior;
+📂 Estrutura do Código
+├── main.c
+└── README.md
 
-}
+📌 Exemplo de Execução
+Digite a 1ª nota (-1 para encerrar): 8
+A 1ª nota é válida: 8.00
 
+Digite a 2ª nota (-1 para encerrar): 9
+A 2ª nota é válida: 9.00
 
+Digite a 3ª nota (-1 para encerrar): -1
 
-// Função para encontrar a menor nota
+Finalizada inclusão de notas.
 
-float menorNota(float notas[], int qtd)
+** MENU ESTATÍSTICO **
+1 - Calcular Média
+2 - Maior Nota
+3 - Menor Nota
+4 - Listar Notas
+0 - Sair
+Escolha uma opção: 
 
-{
+🧩 Tecnologias Utilizadas
 
-  float menor = notas[0];
+Linguagem C
 
-  for (int i = 1; i < qtd; i++)
+Compilador GCC / MinGW / Clang
 
-  {
+📘 Licença
 
-    if (notas[i] < menor)
-
-    {
-
-      menor = notas[i];
-
-    }
-
-  }
-
-  return menor;
-
-}
-
-
-
-// Função para exibir o menu
-
-void menu(float notas[], int qtd)
-
-{
-
-  int opcao;
-
-  do
-
-  {
-
-    printf("\n** MENU ESTATÍSTICO **\n");
-
-    printf("1 - Calcular Média\n");
-
-    printf("2 - Maior Nota\n");
-
-    printf("3 - Menor Nota\n");
-
-    printf("4 - Listar Notas\n");
-
-    printf("0 - Sair\n");
-
-    printf("Escolha uma opção: ");
-
-    scanf("%d", &opcao);
-
-
-
-    switch (opcao)
-
-    {
-
-    case 1:
-
-      printf("Média das notas = %.2f\n", calcularMedia(notas, qtd));
-
-      break;
-
-    case 2:
-
-      printf("Maior nota = %.2f\n", maiorNota(notas, qtd));
-
-      break;
-
-    case 3:
-
-      printf("Menor nota = %.2f\n", menorNota(notas, qtd));
-
-      break;
-
-    case 4:
-
-      printf("Notas inseridas: ");
-
-      for (int i = 0; i < qtd; i++)
-
-      {
-
-        printf("%.2f ", notas[i]);
-
-      }
-
-      printf("\n");
-
-      break;
-
-    case 0:
-
-      printf("Encerrando...\n");
-
-      break;
-
-    default:
-
-      printf("Opção inválida!\n");
-
-    }
-
-  } while (opcao != 0);
-
-}
-
-
-
-int main()
-
-{
-
-  float notas[10];
-
-  int i = 0;
-
-  float entrada;
-
-
-
-  while (i < 10)
-
-  {
-
-    printf("Digite a %dª nota (-1 para encerrar): ", i + 1);
-
-    scanf("%f", &entrada);
-
-
-
-    if (entrada == -1)
-
-    {
-
-      printf("\nFinalizada inclusão de notas.\n");
-
-      break; // Encerra o loop se o usuário digitar -1
-
-    }
-
-    // Verifica se a nota está entre 0 e 10
-
-    if (entrada < 0 || entrada > 10)
-
-    {
-
-      printf("Nota inválida! Digite entre 0 e 10.\n");
-
-      continue; // Pede a nota novamente
-
-    }
-
-    // Se passou pela validação, a nota é válida
-
-    printf("A %dª nota é válida: %.2f\n", i + 1, entrada);
-
-
-
-    notas[i] = entrada;
-
-    i++;
-
-  }
-
-
-
-  if (i == 0)
-
-  {
-
-    printf("Nenhuma nota válida foi inserida.\n");
-
-  }
-
-  else
-
-  {
-
-    menu(notas, i);
-
-  }
-
-
-
-  return 0; 
-
-}
+Este projeto é de uso livre para estudos e melhorias.
